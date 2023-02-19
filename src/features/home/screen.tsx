@@ -23,7 +23,7 @@ export const HomeScreen: FC<
 				space="$4"
 				maxWidth={600}
 			>
-				<H1 textAlign="center">Welcome to Tamagui.</H1>
+				<H1 textAlign="center">Welcome to Icch.</H1>
 				<Paragraph textAlign="center">
 					Here's a basic starter to show navigating from one screen to another.
 				</Paragraph>
