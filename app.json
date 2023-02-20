@@ -3,6 +3,11 @@
     "name": "ticket-app",
     "slug": "ticket-app",
     "version": "2.2.1",
+    "extra": {
+      "eas": {
+        "projectId": "612863f2-1779-44c7-bb05-5c282f22066b"
+      }
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -31,5 +36,6 @@
     "plugins": [
       "expo-dev-client"
     ]
-  }
+  },
+  "owner": "felixpp"
 }
