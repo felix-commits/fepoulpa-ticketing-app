@@ -11,7 +11,6 @@ export const Login = () => {
         <H4>Dring Marché !</H4>
         <Input
           value={email}
-          keyboardType="email"
           autoCapitalize={false}
           autoComplete={false}
           onChangeText={value => setEmail(value)}
