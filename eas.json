@@ -39,6 +39,11 @@
         "buildType": "app-bundle"
       },
       "releaseChannel": "production"
+    },
+    "preview": {
+      "ios": {
+        "simulator": true
+      }
     }
   },
   "submit": {
