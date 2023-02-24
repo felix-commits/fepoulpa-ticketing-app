@@ -29,6 +29,10 @@
       },
       "distribution": "internal",
       "developmentClient": true,
+      "ios": {
+        "resourceClass": "m1-medium",
+        "simulator": true
+      },
       "env": {
         "APP_VARIANT": "development"
       },
@@ -44,6 +48,7 @@
       "developmentClient": true,
       "distribution": "internal",
       "ios": {
+        "resourceClass": "m1-medium",
         "simulator": true
       }
     }
