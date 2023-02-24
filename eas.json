@@ -1,6 +1,7 @@
 {
   "cli": {
-    "version": ">= 0.52.0"
+    "version": ">= 0.52.0",
+    "promptToConfigurePushNotifications": false
   },
   "build": {
     "betaAPK": {
@@ -31,7 +32,7 @@
       "developmentClient": true,
       "ios": {
         "resourceClass": "m1-medium",
-        "simulator": true
+        "credentialsSource": "local"
       },
       "env": {
         "APP_VARIANT": "development"
@@ -44,12 +45,11 @@
       },
       "releaseChannel": "production"
     },
-    "development-simulator": {
+    "development-m1": {
       "developmentClient": true,
       "distribution": "internal",
       "ios": {
-        "resourceClass": "m1-medium",
-        "simulator": true
+        "resourceClass": "m1-medium"
       }
     }
   },

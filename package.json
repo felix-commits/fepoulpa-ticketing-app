@@ -1,7 +1,7 @@
 {
   "name": "ticket-app",
   "version": "1.0.0",
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.4.1",
   "scripts": {
     "start:wsl:wifi": "REACT_NATIVE_PACKAGER_HOSTNAME=$(netsh.exe interface ip show address \"Wi-Fi\" | grep 'IP Address' | sed -r 's/.*IP Address:\\W*//') TAMAGUI_TARGET=native expo start",
     "start:wsl:eth": "REACT_NATIVE_PACKAGER_HOSTNAME=$(netsh.exe interface ip show address \"Ethernet\" | grep 'IP Address' | sed -r 's/.*IP Address:\\W*//') TAMAGUI_TARGET=native expo start",
@@ -29,9 +29,9 @@
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.4",
     "expo-updates": "~0.15.6",
-    "react": "18.2.0",
+    "react": "18.1.0",
     "react-dom": "18.2.0",
-    "react-native": "0.71.3",
+    "react-native": "0.70.5",
     "react-native-dotenv": "^3.4.7",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-reanimated": "~2.14.4",
