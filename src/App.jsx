@@ -1,8 +1,6 @@
 import 'expo-dev-client'
-
 import { useFonts } from 'expo-font'
 import { Keyboard, KeyboardAvoidingView } from 'react-native'
-
 import { NativeNavigation } from './navigation'
 import { Provider } from './provider'
 import { ClerkProvider } from '@clerk/clerk-expo'

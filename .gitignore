@@ -80,3 +80,4 @@ dist/
 
 .env
 .yarn
+.yarn/install-state.gz
