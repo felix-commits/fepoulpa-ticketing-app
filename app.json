@@ -16,6 +16,7 @@
     ],
     "orientation": "portrait",
     "userInterfaceStyle": "light",
+    "jsEngine": "hermes",
     "splash": {
       "backgroundColor": "#ddffe2",
       "image": "./src/assets/splash.png",

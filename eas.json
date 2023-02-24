@@ -1,7 +1,7 @@
 {
   "cli": {
     "version": ">= 0.52.0",
-    "promptToConfigurePushNotifications": false
+    "promptToConfigurePushNotifications": true
   },
   "build": {
     "betaAPK": {
@@ -31,7 +31,7 @@
       "distribution": "internal",
       "developmentClient": true,
       "ios": {
-        "resourceClass": "m1-medium",
+        "resourceClass": "m1-medium"
       },
       "env": {
         "APP_VARIANT": "development"

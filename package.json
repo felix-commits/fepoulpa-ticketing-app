@@ -5,7 +5,7 @@
   "scripts": {
     "start:wsl:wifi": "REACT_NATIVE_PACKAGER_HOSTNAME=$(netsh.exe interface ip show address \"Wi-Fi\" | grep 'IP Address' | sed -r 's/.*IP Address:\\W*//') TAMAGUI_TARGET=native expo start",
     "start:wsl:eth": "REACT_NATIVE_PACKAGER_HOSTNAME=$(netsh.exe interface ip show address \"Ethernet\" | grep 'IP Address' | sed -r 's/.*IP Address:\\W*//') TAMAGUI_TARGET=native expo start",
-    "start": "expo start --dev-client",
+    "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
