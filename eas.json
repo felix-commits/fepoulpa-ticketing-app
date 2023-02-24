@@ -32,7 +32,6 @@
       "developmentClient": true,
       "ios": {
         "resourceClass": "m1-medium",
-        "credentialsSource": "local"
       },
       "env": {
         "APP_VARIANT": "development"
