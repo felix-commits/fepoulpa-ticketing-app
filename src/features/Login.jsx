@@ -1,26 +1,30 @@
-import { blue } from '@tamagui/theme-base'
+import { SignedIn, SignedOut, useAuth, useUser } from '@clerk/clerk-expo'
 import { useState } from 'react'
-import { Button, Form, FormTrigger, H4, Input } from 'tamagui'
-import { MyStack } from '../components/MyStack'
+import { Button, H4, Stack, XStack } from 'tamagui'
+import { SignUp } from './SignUp'
 
-export const Login = () => {
-  const [email, setEmail] = useState('')
+export const Login = ({ navigation }) => {
+  const [open, setOpen] = useState(false)
+  const { user } = useUser()
+  const { signOut } = useAuth()
+
   return (
-    <MyStack>
-      <Form ai="center" space onSubmit={() => console.log('submitting')}>
-        <H4>Dring Marché !</H4>
-        <Input
-          value={email}
-          autoCapitalize={false}
-          autoComplete={false}
-          onChangeText={value => setEmail(value)}
-          size="$4"
-          placeholder="Veuillez entrer votre email"
-        />
-        <FormTrigger asChild>
-          <Button>Accéder à ma commande</Button>
-        </FormTrigger>
-      </Form>
-    </MyStack>
+    <Stack flex={1} justifyContent="space-between" paddingVertical={64} paddingHorizontal={16}>
+      <H4>Dring Marché ! 🌽</H4>
+      <SignedIn>
+        <Button onPress={() => signOut()}>Log out</Button>
+      </SignedIn>
+      <SignedOut>
+        <XStack space>
+          <Button flex onPress={() => setOpen(true)}>
+            Sign up
+          </Button>
+          <Button flex themeInverse>
+            Log in
+          </Button>
+        </XStack>
+        <SignUp {...{ open, setOpen }} />
+      </SignedOut>
+    </Stack>
   )
 }
