@@ -36,12 +36,19 @@ export const SignUp = ({ open, setOpen }) => {
   }
 
   return (
-    <Sheet forceRemoveScrollEnabled={open} open={open} onOpenChange={setOpen} dismissOnSnapToBottom zIndex={100_000}>
+    <Sheet
+      modal
+      forceRemoveScrollEnabled={open}
+      open={open}
+      onOpenChange={setOpen}
+      dismissOnSnapToBottom
+      snapPoints={[25]}
+    >
       <Sheet.Overlay />
       <Sheet.Handle />
-      <Sheet.Frame p={16}>
+      <Sheet.Frame flex flexGrow padding={16}>
         <XStack space>
-          <Stack>
+          <Stack flex>
             {!verification ? (
               <Input
                 flex
@@ -50,9 +57,10 @@ export const SignUp = ({ open, setOpen }) => {
                 keyboardType="email-address"
                 autoComplete="email"
                 autoCorrect={false}
+                autoCapitalize={false}
                 onChangeText={value => setEmailAddress(value)}
                 size="$6"
-                placeholder="Veuillez entrer votre email"
+                placeholder="@"
               />
             ) : (
               <Input
@@ -61,11 +69,11 @@ export const SignUp = ({ open, setOpen }) => {
                 keyboardType="phone-pad"
                 onChangeText={value => setCode(value)}
                 size="$6"
-                placeholder="Veuillez entrer le code reçu"
+                placeholder="XXX-XXX"
               />
             )}
           </Stack>
-          <Button f={1} size="$6" circular icon={ArrowRight} onPress={onSignUp} />
+          <Button flex size="$6" circular icon={ArrowRight} onPress={onSignUp} />
         </XStack>
         <Text p={8} color={errorMessage ? 'red' : null}>
           {(verification && `Le code a été envoyé à l'adresse ${emailAddress}`) || errorMessage}
