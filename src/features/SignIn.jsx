@@ -2,34 +2,36 @@ import { ArrowRight } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Input, Stack, Text, XStack } from 'tamagui'
 import { Sheet, Button } from 'tamagui'
-import { useSignUp } from '@clerk/clerk-react'
+import { useSignIn } from '@clerk/clerk-react'
 
 const isValidEmail = email =>
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
     String(email).toLowerCase()
   )
 
-export const SignUp = ({ openSignUp, setOpenSignUp }) => {
-  const [emailAddress, setEmailAddress] = useState('')
+export const SignIn = ({ openSignIn, setOpenSignIn }) => {
+  const [identifier, setIdentifier] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [code, setCode] = useState('')
   const [verification, setVerification] = useState(false)
-  const { signUp, setActive } = useSignUp()
+  const { signIn, setActive } = useSignIn()
+  const strategy = 'email_code'
 
-  const onSignUp = async () => {
+  const onSignIn = async () => {
     if (!verification)
       try {
-        await signUp.create({ emailAddress })
-        await signUp.prepareEmailAddressVerification()
+        const { supportedFirstFactors } = await signIn.create({ identifier })
+        const { emailAddressId } = supportedFirstFactors.find(factor => factor.strategy === strategy)
+        await signIn.prepareFirstFactor({ strategy, emailAddressId })
         setVerification(true)
       } catch (error) {
         setErrorMessage(error.errors ? error.errors[0].message : error)
       }
     else
       try {
-        const { status, createdSessionId } = await signUp.attemptEmailAddressVerification({ code })
+        const { status, createdSessionId } = await signIn.attemptFirstFactor({ strategy, code })
         if (status === 'complete') setActive({ session: createdSessionId })
-        setOpenSignUp(false)
+        setOpenSignIn(false)
       } catch (error) {
         setErrorMessage(error.errors ? error.errors[0].message : error)
       }
@@ -38,9 +40,9 @@ export const SignUp = ({ openSignUp, setOpenSignUp }) => {
   return (
     <Sheet
       modal
-      forceRemoveScrollEnabled={openSignUp}
-      open={openSignUp}
-      onOpenChange={setOpenSignUp}
+      forceRemoveScrollEnabled={openSignIn}
+      open={openSignIn}
+      onOpenChange={setOpenSignIn}
       dismissOnSnapToBottom
       snapPoints={[25]}
     >
@@ -52,13 +54,13 @@ export const SignUp = ({ openSignUp, setOpenSignUp }) => {
             {!verification ? (
               <Input
                 flex
-                borderColor={emailAddress && !isValidEmail(emailAddress) ? 'red' : null}
-                value={emailAddress}
+                borderColor={identifier && !isValidEmail(identifier) ? 'red' : null}
+                value={identifier}
                 keyboardType="email-address"
                 autoComplete="email"
                 autoCorrect={false}
                 autoCapitalize={false}
-                onChangeText={value => setEmailAddress(value)}
+                onChangeText={value => setIdentifier(value)}
                 size="$6"
                 placeholder="@"
               />
@@ -69,14 +71,14 @@ export const SignUp = ({ openSignUp, setOpenSignUp }) => {
                 keyboardType="phone-pad"
                 onChangeText={value => setCode(value)}
                 size="$6"
-                placeholder="XXX-XXX"
+                placeholder="XXXXXX"
               />
             )}
           </Stack>
-          <Button flex size="$6" circular icon={ArrowRight} onPress={onSignUp} />
+          <Button flex size="$6" circular icon={ArrowRight} onPress={onSignIn} />
         </XStack>
         <Text p={8}>
-          {verification && `Le code a été envoyé à l'adresse ${emailAddress}`} <Text color="red">{errorMessage}</Text>
+          {verification && `Le code a été envoyé à l'adresse ${identifier}`} <Text color="red">{errorMessage}</Text>
         </Text>
       </Sheet.Frame>
     </Sheet>
