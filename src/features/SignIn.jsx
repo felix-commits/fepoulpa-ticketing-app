@@ -44,7 +44,7 @@ export const SignIn = ({ openSignIn, setOpenSignIn }) => {
       open={openSignIn}
       onOpenChange={setOpenSignIn}
       dismissOnSnapToBottom
-      snapPoints={[25]}
+      snapPoints={[60]}
     >
       <Sheet.Overlay />
       <Sheet.Handle />
@@ -77,7 +77,7 @@ export const SignIn = ({ openSignIn, setOpenSignIn }) => {
           </Stack>
           <Button flex size="$6" circular icon={ArrowRight} onPress={onSignIn} />
         </XStack>
-        <Text p={8}>
+        <Text padding={8}>
           {verification && `Le code a été envoyé à l'adresse ${identifier}`} <Text color="red">{errorMessage}</Text>
         </Text>
       </Sheet.Frame>

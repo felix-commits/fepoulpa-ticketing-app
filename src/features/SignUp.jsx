@@ -42,7 +42,7 @@ export const SignUp = ({ openSignUp, setOpenSignUp }) => {
       open={openSignUp}
       onOpenChange={setOpenSignUp}
       dismissOnSnapToBottom
-      snapPoints={[25]}
+      snapPoints={[60]}
     >
       <Sheet.Overlay />
       <Sheet.Handle />
