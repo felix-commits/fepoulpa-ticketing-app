@@ -1,4 +1,4 @@
-import { Articles } from '../features/Articles'
+import { Products } from '../features/Products'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
 import { Clients } from '../features/Clients'
@@ -9,10 +9,10 @@ const Tab = createBottomTabNavigator()
 export const NativeNavigation = () => (
   <Tab.Navigator>
     <Tab.Screen
-      name="articles"
-      component={Articles}
+      name="products"
+      component={Products}
       options={{
-        title: 'Articles',
+        title: 'Produits',
         headerRight: () => <Icon.Button name="person-circle" color="black" backgroundColor="white" />,
         tabBarIcon: ({ color, size }) => <Ionicons name="layers" color={color} size={size} />,
       }}
