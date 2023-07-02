@@ -1,14 +1,11 @@
 import 'expo-dev-client'
-
 import { useFonts } from 'expo-font'
 import { Keyboard, KeyboardAvoidingView } from 'react-native'
-
-import { NativeNavigation } from './navigation'
+import { AuthNavigation, BottomTabNavigation } from './navigation'
 import { Provider } from './provider'
-import { ClerkProvider } from '@clerk/clerk-expo'
-import * as SecureStore from 'expo-secure-store'
+import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo'
 import { CLERK_PUBLISHABLE_KEY } from '@env'
-import { Theme } from 'tamagui'
+import * as SecureStore from 'expo-secure-store'
 
 const tokenCache = {
   getToken: key => SecureStore.getItemAsync(key),
@@ -30,9 +27,12 @@ const App = () => {
     <KeyboardAvoidingView style={{ flex: 1 }} onStartShouldSetResponder={handleUnhandledTouches}>
       <ClerkProvider tokenCache={tokenCache} publishableKey={CLERK_PUBLISHABLE_KEY}>
         <Provider>
-          <Theme name="purple">
-            <NativeNavigation />
-          </Theme>
+            <SignedIn>
+              <BottomTabNavigation />
+            </SignedIn>
+            <SignedOut>
+              <AuthNavigation />
+            </SignedOut>
         </Provider>
       </ClerkProvider>
     </KeyboardAvoidingView>
