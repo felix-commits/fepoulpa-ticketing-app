@@ -1,7 +1,8 @@
 import { useUser } from '@clerk/clerk-expo'
 import { useEffect, useState } from 'react'
-import { Stack, Text } from 'tamagui'
+import { ScrollView, Separator, YGroup, YStack } from 'tamagui'
 import { API_KEY } from '@env'
+import { Product } from './Product'
 
 export const Products = () => {
   const { user } = useUser()
@@ -25,10 +26,14 @@ export const Products = () => {
   }, [user])
 
   return (
-    <Stack flex justifyContent="center" alignItems="center">
-      {productIds?.map(e => (
-        <Text key={e}>{e}</Text>
-      ))}
-    </Stack>
+    <ScrollView theme="white" backgroundColor="white">
+      <YStack padding="$3" space="$2" alignItems="center">
+        <YGroup bordered separator={<Separator />}>
+          {productIds?.map(id => (
+            <Product key={id} {...{ id }} />
+          ))}
+        </YGroup>
+      </YStack>
+    </ScrollView>
   )
 }

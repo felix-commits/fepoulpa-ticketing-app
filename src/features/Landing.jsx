@@ -10,23 +10,17 @@ export const Landing = ({ navigation }) => {
   const { signOut } = useAuth()
 
   return (
-    <Stack flex justifyContent="space-between" paddingVertical={64} paddingHorizontal={16}>
-      <SignedIn>
-        <Button onPress={() => navigation.push('articles')}>Consulter mes articles</Button>
-        <Button onPress={() => signOut()}>Log out</Button>
-      </SignedIn>
-      <SignedOut>
-        <XStack space>
-          <Button flex onPress={() => setOpenSignUp(true)}>
-            Sign up
-          </Button>
-          <Button flex themeInverse onPress={() => setOpenSignIn(true)}>
-            Log in
-          </Button>
-        </XStack>
-        <SignIn {...{ openSignIn, setOpenSignIn }} />
-        <SignUp {...{ openSignUp, setOpenSignUp }} />
-      </SignedOut>
+    <Stack flex justifyContent="flex-end" padding={24}>
+      <XStack space>
+        <Button flex onPress={() => setOpenSignUp(true)}>
+          Sign up
+        </Button>
+        <Button flex themeInverse onPress={() => setOpenSignIn(true)}>
+          Log in
+        </Button>
+      </XStack>
+      <SignIn {...{ openSignIn, setOpenSignIn }} />
+      <SignUp {...{ openSignUp, setOpenSignUp }} />
     </Stack>
   )
 }
