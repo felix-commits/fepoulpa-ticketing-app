@@ -1,6 +1,6 @@
-import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-expo'
+import { useAuth } from '@clerk/clerk-expo'
 import { useState } from 'react'
-import { Button, H4, Stack, XStack } from 'tamagui'
+import { Button, H2, Stack, XStack } from 'tamagui'
 import { SignIn } from './SignIn'
 import { SignUp } from './SignUp'
 
@@ -10,8 +10,11 @@ export const Landing = ({ navigation }) => {
   const { signOut } = useAuth()
 
   return (
-    <Stack flex justifyContent="flex-end" padding={24}>
-      <XStack space>
+    <Stack flex justifyContent="space-between" alignItems="center" padding={16} space>
+      <H2 flex paddingTop={56} textAlign="center">
+        Welcome to Fepoulpa Ticketing
+      </H2>
+      <XStack flex space alignItems="flex-end">
         <Button flex onPress={() => setOpenSignUp(true)}>
           Sign up
         </Button>
